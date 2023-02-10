@@ -254,12 +254,4 @@ public class DateUtil {
                 return "日";
         }
     }
-
-    public static void main(String[] args) {
-        Date date = new Date();
-        date= DateUtils.addHours(date,-24*30);
-        long tinmills = date.getTime();
-        String formatTimeAgo = getFormatTimeAgo(30, tinmills, "yyyy-MM-dd HH:mm");
-        System.out.println(formatTimeAgo);
-    }
 }
