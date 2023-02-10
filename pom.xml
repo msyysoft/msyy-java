@@ -5,17 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>jar</packaging>
 
-    <!-- gav信息 -->
     <groupId>io.github.msyysoft</groupId>
     <artifactId>msyy-java</artifactId>
     <version>1.0.0</version>
 
-    <!-- 项目信息 -->
     <name>msyy-java</name>
     <description>Spring jdbc template orm library and other auxiliary tool for java development.</description>
     <url>https://github.com/msyysoft/msyy-java</url>
 
-    <!-- 开源协议 -->
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
@@ -23,7 +20,6 @@
         </license>
     </licenses>
 
-    <!-- 开发者信息 -->
     <developers>
         <developer>
             <id>tewuerqiang</id>
@@ -37,7 +33,6 @@
         </developer>
     </developers>
 
-    <!-- 项目在github或其它托管平台的地址 -->
     <scm>
         <connection>https://github.com/msyysoft/msyy-java.git</connection>
         <developerConnection>scm:git:ssh://git@github.com:msyysoft/msyy-java.git</developerConnection>
@@ -272,7 +267,6 @@
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
             </plugin>
-            <!-- 生成java source.jar -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -310,7 +304,6 @@
                     <charset>UTF-8</charset>
                     <encoding>UTF-8</encoding>
                     <docencoding>UTF-8</docencoding>
-                    <!-- TODO 临时解决不规范的javadoc生成报错,后面要规范化后把这行去掉 -->
                     <additionalparam>-Xdoclint:none</additionalparam>
                 </configuration>
                 <executions>
