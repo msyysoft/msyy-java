@@ -122,7 +122,7 @@ public class SingleTablePersistUtils {
      */
     @SuppressWarnings("unchecked")
     public static <T extends TableBean> T getRecordByPKMap(AbstractDao dao, T bean, Map<String, Object> paramMap) {
-        String sql = getSqlSelect(bean.getSqlSelectAll(), paramMap, bean.sortConditionsMap);
+        String sql = getSqlSelect(bean.getSqlSelectAll(), paramMap, bean.sortConditionsMap, null, null);
         log.debug("single-table select by pk sql >>> " + sql);
         return dao.getNamedParameterJdbcTemplate().queryForObject(sql, paramMap, new BeanPropertyRowMapper<T>((Class<T>) bean.getClass()));
     }
@@ -137,7 +137,7 @@ public class SingleTablePersistUtils {
     @SuppressWarnings("unchecked")
     public static <T extends TableBean> List<T> getRecordListBySqlConditions(AbstractDao dao, T bean) {
         bean.putInBeanMap();
-        String sql = getSqlSelect(bean.getSqlSelectAll(), bean.sqlConditionsMap, bean.sortConditionsMap);
+        String sql = getSqlSelect(bean.getSqlSelectAll(), bean.sqlConditionsMap, bean.sortConditionsMap, bean.pageConditionNumber, bean.pageConditionSize);
         log.debug("single-table select sql >>> " + sql);
         return dao.getNamedParameterJdbcTemplate().query(sql, bean.sqlConditionsMap, new BeanPropertyRowMapper<T>((Class<T>) bean.getClass()));
     }
@@ -292,7 +292,7 @@ public class SingleTablePersistUtils {
      * @param sqlConditionsMap
      * @return
      */
-    private static String getSqlSelect(String selectAllSql, Map<String, Object> sqlConditionsMap, Map<String, String> sortConditionsMap) {
+    private static String getSqlSelect(String selectAllSql, Map<String, Object> sqlConditionsMap, Map<String, String> sortConditionsMap, Integer pageConditionNumber, Integer pageConditionSize) {
         StringBuffer sql = new StringBuffer(selectAllSql);
         if (sqlConditionsMap != null && !sqlConditionsMap.isEmpty()) {
             sql.append(" where ");
@@ -320,6 +320,12 @@ public class SingleTablePersistUtils {
             for (Map.Entry<String, String> sorter : sortConditionsMap.entrySet()) {
                 sql.append(" " + sorter.getKey() + " " + sorter.getValue());
             }
+        }
+        if (pageConditionNumber != null && pageConditionSize != null) {
+            int offset = (pageConditionNumber - 1) * pageConditionSize;
+            offset = Math.max(offset, 0);
+            pageConditionSize = pageConditionSize > 0 ? pageConditionSize : 15;
+            sql.append(" limit ").append(pageConditionSize).append(" offset ").append(offset);
         }
         return sql.toString();
     }

@@ -6,8 +6,9 @@ package io.github.msyysoft.java.database;
 public class SqlConditionValue {
     private Object value;
     private String operation;
-    public SqlConditionValue(String operation,Object value){
-        this.operation = operation==null?"=":operation;
+
+    public SqlConditionValue(String operation, Object value) {
+        this.operation = operation == null ? "=" : operation;
         this.value = value;
     }
 

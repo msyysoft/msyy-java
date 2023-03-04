@@ -15,8 +15,17 @@ public abstract class TableBean {
 
     protected transient Map<String, Object> sqlUpdateColumnAliasMap = new HashMap<String, Object>();
 
+    protected transient Integer pageConditionNumber;
+
+    protected transient Integer pageConditionSize;
+
     protected void setSqlUpdateColumnAliasMap(Map<String, Object> sqlUpdateColumnAliasMap) {
         this.sqlUpdateColumnAliasMap = sqlUpdateColumnAliasMap;
+    }
+
+    public void setPageCondition(int number, int size) {
+        this.pageConditionNumber = number;
+        this.pageConditionSize = size;
     }
 
     public void clearAllConditions() {
@@ -24,6 +33,8 @@ public abstract class TableBean {
         sortConditionsMap.clear();
         sqlUpdateColumnsMap.clear();
         sqlUpdateColumnAliasMap.clear();
+        pageConditionNumber = null;
+        pageConditionSize = null;
     }
 
     /**
