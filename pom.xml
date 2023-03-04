@@ -7,7 +7,7 @@
 
     <groupId>io.github.msyysoft</groupId>
     <artifactId>msyy-java</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <name>msyy-java</name>
     <description>Spring jdbc template orm library and other auxiliary tool for java development.</description>
@@ -202,7 +202,7 @@
     </dependencies>
 
     <build>
-        <finalName>dyfc_java_platform</finalName>
+        <finalName>msyy-java</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
