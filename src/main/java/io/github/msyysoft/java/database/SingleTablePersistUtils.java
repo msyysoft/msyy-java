@@ -229,9 +229,9 @@ public class SingleTablePersistUtils {
                     sql.append(" and ");
                 String column = columns[i];
                 if (sqlConditionsMap.get(column) == null)
-                    sql.append(column).append(" is null");
+                    sql.append(column).append(" is null ");
                 else
-                    sql.append(column).append(" = :").append(COLUMN_PERFIX).append(column);
+                    sql.append(column).append(" = :").append(COLUMN_PERFIX).append(column).append(" ");
                 bean.sqlUpdateColumnAliasMap.put(COLUMN_PERFIX + column, sqlConditionsMap.get(column));
             }
             return sql.toString();
@@ -257,14 +257,19 @@ public class SingleTablePersistUtils {
                 String column = columns[i];
                 Object obj = sqlConditionsMap.get(column);
                 if (obj == null)
-                    sql.append(column).append(" is null");
+                    sql.append(column).append(" is null ");
                 else {
                     if (obj instanceof SqlConditionValue) {
                         SqlConditionValue scv = (SqlConditionValue) obj;
-                        sql.append(column).append(scv.getOperation() + " :").append(column);
+                        sql.append(column).append(" " + scv.getOperation() + " ");
+                        if (scv.getOperation().contains("in")) {
+                            sql.append(" (:").append(column).append(") ");
+                        } else {
+                            sql.append(" :").append(column).append(" ");
+                        }
                         sqlConditionsMap.put(column, scv.getValue());
                     } else {
-                        sql.append(column).append(" = :").append(column);
+                        sql.append(column).append(" = :").append(column).append(" ");
                     }
                 }
             }
@@ -303,14 +308,19 @@ public class SingleTablePersistUtils {
                 String column = columns[i];
                 Object obj = sqlConditionsMap.get(column);
                 if (obj == null)
-                    sql.append(column).append(" is null");
+                    sql.append(column).append(" is null ");
                 else {
                     if (obj instanceof SqlConditionValue) {
                         SqlConditionValue scv = (SqlConditionValue) obj;
-                        sql.append(column).append(scv.getOperation() + " :").append(column);
+                        sql.append(column).append(" " + scv.getOperation() + " ");
+                        if (scv.getOperation().contains("in")) {
+                            sql.append(" (:").append(column).append(") ");
+                        } else {
+                            sql.append(" :").append(column).append(" ");
+                        }
                         sqlConditionsMap.put(column, scv.getValue());
                     } else {
-                        sql.append(column).append(" = :").append(column);
+                        sql.append(column).append(" = :").append(column).append(" ");
                     }
                 }
             }
@@ -348,14 +358,19 @@ public class SingleTablePersistUtils {
                 String column = columns[i];
                 Object obj = sqlConditionsMap.get(column);
                 if (obj == null)
-                    sql.append(column).append(" is null");
+                    sql.append(column).append(" is null ");
                 else {
                     if (obj instanceof SqlConditionValue) {
                         SqlConditionValue scv = (SqlConditionValue) obj;
-                        sql.append(column).append(scv.getOperation() + " :").append(column);
+                        sql.append(column).append(" " + scv.getOperation() + " ");
+                        if (scv.getOperation().contains("in")) {
+                            sql.append(" (:").append(column).append(") ");
+                        } else {
+                            sql.append(" :").append(column).append(" ");
+                        }
                         sqlConditionsMap.put(column, scv.getValue());
                     } else {
-                        sql.append(column).append(" = :").append(column);
+                        sql.append(column).append(" = :").append(column).append(" ");
                     }
                 }
             }

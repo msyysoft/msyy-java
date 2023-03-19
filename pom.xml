@@ -7,7 +7,7 @@
 
     <groupId>io.github.msyysoft</groupId>
     <artifactId>msyy-java</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 
     <name>msyy-java</name>
     <description>Spring jdbc template orm library and other auxiliary tool for java development.</description>
